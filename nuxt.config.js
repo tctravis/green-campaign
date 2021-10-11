@@ -1,3 +1,5 @@
+const development = process.env.NODE_ENV !== 'production'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -44,7 +46,12 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    // extra config e.g
+    baseURL: development
+      ? 'http://localhost:8888'
+      : 'https://green-campaign.netlify.app',
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -57,9 +64,11 @@ export default {
   build: {
   },
 
-  publicRuntimeConfig: {
-    axios: {
-      baseURL: process.env.NODE_ENV === 'production' ? process.env.BASE_URL || 'http://localhost:8888/' : 'http://localhost:8888/',
-    }
-  },
+  // publicRuntimeConfig: {
+  //   axios: {
+  //     baseURL: process.env.NODE_ENV === 'production' ? process.env.BASE_URL || 'http://localhost:8888/' : 'http://localhost:8888/',
+  //   }
+  // },
+
+
 }

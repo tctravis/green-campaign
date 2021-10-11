@@ -15,7 +15,7 @@ export default {
     }
   },
   async fetch() {
-    const { voters } = await this.$axios.get('/.netlify/functions/fetch_voters')
+    const { voters } = await this.$axios.get('/.netlify/functions/fetch-voters')
     this.voters = voters
   },
   fetchOnServer: false,
