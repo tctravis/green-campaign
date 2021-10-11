@@ -1,22 +1,18 @@
 // Credit to Josh Comeau 
-// const faunadb = require('faunadb');
+const faunadb = require('faunadb');
 exports.handler = async (event) => {
     // console.log('here')
-    // const q = faunadb.query;
-    // const client = new faunadb.Client({
-    //     secret: process.env.FAUNA_SECRET_KEY,
-    // })
-    // const document = await client.query(
-    //     q.Get(q.Index('all_customers'))
-    // )
+    const q = faunadb.query;
+    const client = new faunadb.Client({
+        secret: process.env.FAUNA_SECRET_KEY,
+    })
+    const document = await client.query(
+        q.Get(q.Index('all_customers'))
+    )
     return {
         statusCode: 200,
-        body: JSON.stringify({ message: "Hello World" })
+        body: JSON.stringify({
+            voters: document.data,
+        }),
     };
-    // return {
-    //     statusCode: 200,
-    //     body: JSON.stringify({
-    //         likes: document.data,
-    //     }),
-    // };
 };
